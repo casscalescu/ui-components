@@ -1,0 +1,68 @@
+:root {
+    --animation-curve: cubic-bezier(1,0,0,1);
+}
+
+body {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 85vw;
+}
+
+label {
+    width: 12em;
+    height: 1.5em;
+    background-color: white;
+    position: absolute;
+    cursor: pointer;
+
+    &::before, &::after {
+        content: "";
+        width: 12em;
+        height: 1.5em;
+        background-color: white;
+        position: absolute;
+        display: block;
+        transition: all .6s var(--animation-curve);
+    }
+
+    &::before {
+        top: -250%;
+        left: 0%;
+        transform-origin: left top;
+        // verfiy in origin state, rotate is 0 and only want to rotate in checked
+        transform: rotateZ(0deg);
+    }
+
+    &::after {
+        bottom: -250%;
+        left: 0%;
+        transform-origin: left bottom;
+        transform: rotateZ(0deg);
+    }
+}
+
+#toggle:checked ~ label::before {
+    background-color: red;
+    transform: rotateZ(41deg);
+}
+
+#toggle:checked ~ label::after {
+    background-color: red;
+    transform: rotateZ(-41deg);
+}
+
+#toggle:checked ~ label {
+    background-color: black;
+}
+
+#toggle ~ label {
+    // speed transition for middle label
+    transition: all .5s var(--animation-curve);
+}
+
+input {
+    display: none;
+}
