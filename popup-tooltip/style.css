@@ -1,0 +1,63 @@
+:root {
+    /*   color variables */
+    --clr-primary: #6aeeb5;
+    --clr-primary-hover: #29e6a7;
+    --clr-primary-dark: #0a4542;
+    --clr-gray100: #f0f7f8;
+    --clr-gray200: #cfd8dc;
+
+    /*   border radius */
+    --radius: 0.2rem;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Montserrat, sans-serif;
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    background: var(--clr-gray100);
+}
+
+h1 {
+    font-size: 72px;
+    position: relative;
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: var(--clr-primary);
+}
+
+h1:hover {
+    color: var(--clr-primary-dark);
+}
+
+h1::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    font-size: 48px;
+    color: black;
+    background: white;
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    box-shadow: 0px 0px 10px var(--clr-gray200);
+    left: -80%;
+    top: -100%;
+    /* for animation effect */
+    clip-path: circle(0rem at center);
+    /* make sure we don't see anything */
+    overflow: hidden;
+    transition: 300ms all ease-in;
+}
+
+/* select before state when h1 is hovered */
+h1:hover::before {
+    clip-path: circle(20rem at center);
+    top: -130%;
+}
